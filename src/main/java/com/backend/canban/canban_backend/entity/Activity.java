@@ -1,11 +1,13 @@
 package com.backend.canban.canban_backend.entity;
 
-import jakarta.persistence.*;
+/* import jakarta.persistence.*; */
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import java.util.Objects;
 
@@ -27,7 +29,7 @@ public class Activity {
 
     //для автоматической конвертации числа в true/false
     @Basic
-    @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean activated;
 
     @Column(updatable = false)

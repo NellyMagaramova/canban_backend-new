@@ -1,6 +1,7 @@
 package com.backend.canban.canban_backend.service;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
+/* import jakarta.transaction.Transactional;*/
 import org.springframework.stereotype.Service;
 import com.backend.canban.canban_backend.repo.PriorityRepository;
 import com.backend.canban.canban_backend.entity.Priority;

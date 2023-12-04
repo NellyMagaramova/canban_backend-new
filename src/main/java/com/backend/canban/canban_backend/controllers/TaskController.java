@@ -90,8 +90,8 @@ public class TaskController {
         String title = taskSearchValues.getTitle() != null ?
                 taskSearchValues.getTitle() : null;
 
-        Integer completed = taskSearchValues.getCompleted() != null ?
-                taskSearchValues.getCompleted() : null;
+        Boolean completed = taskSearchValues.getCompleted() != null &&
+                taskSearchValues.getCompleted() == 1 ? true: false;
 
         Long priorityId = taskSearchValues.getPriorityId() != null ?
                 taskSearchValues.getPriorityId() : null;

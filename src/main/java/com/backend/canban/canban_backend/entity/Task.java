@@ -2,7 +2,8 @@ package com.backend.canban.canban_backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+/* import jakarta.persistence.*; */
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,9 +32,15 @@ public class Task {
     private Long id;
     private String title;
 
+    @Type(type = "org.hibernate.type.NumericBooleanType") // для автоматической конвертации числа в true/false
+    private Boolean completed; // 1 = true, 0 = false
+
+    /*
+
     @Basic
     @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
     private Boolean completed;
+    */
 
 
     @Column(name = "task_date")

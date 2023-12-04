@@ -1,6 +1,7 @@
 package com.backend.canban.canban_backend.service;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
+/* import jakarta.transaction.Transactional;*/
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,7 +38,7 @@ public class TaskService {
     }
 
 
-    public Page<Task> findByParams(String text, Integer completed, Long priorityId,
+    public Page<Task> findByParams(String text, Boolean completed, Long priorityId,
                                    Long categoryId, String email, Date dateFrom,
                                    Date dateTo, PageRequest paging)
     {
