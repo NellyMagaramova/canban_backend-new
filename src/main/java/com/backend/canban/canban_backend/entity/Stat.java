@@ -13,7 +13,7 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "stat", schema = "todolist", catalog = "javabeginCourse")
+@Table(name = "stat", schema = "public", catalog = "javabeginCourse")
 @Setter
 @Getter
 @AllArgsConstructor

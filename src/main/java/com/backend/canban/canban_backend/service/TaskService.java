@@ -21,22 +21,18 @@ public class TaskService {
     }
 
     public List<Task> findAll(String email) {
-
         return repository.findByUserEmailOrderByTitleAsc(email);
     }
 
     public Task add(Task task) {
-
         return repository.save(task);
     }
 
     public Task update(Task task) {
-
         return repository.save(task);
     }
 
     public void deleteById(Long id) {
-
         repository.deleteById(id);
     }
 
