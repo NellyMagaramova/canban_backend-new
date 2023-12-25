@@ -25,6 +25,9 @@ public class TaskService {
         return repository.findByUserEmailOrderByTitleAsc(email);
     }
 
+
+
+
     public Task add(Task task) {
         return repository.save(task);
     }
@@ -44,6 +47,10 @@ public class TaskService {
     {
         return repository.findByParams(text, completed, priorityId,
                 categoryId, email, dateFrom, dateTo, paging);
+    }
+
+    public  Page<Task> findByCategory(Long categoryId, String email, PageRequest paging) {
+        return repository.findByCategory(categoryId, email, paging);
     }
 
     public Task findById(Long id) {

@@ -30,6 +30,10 @@ public class TaskController {
     public ResponseEntity<List<Task>> findAll(@RequestBody String email) {
         return ResponseEntity.ok(taskService.findAll(email));
     }
+
+
+
+
     @PostMapping("/add")
     public ResponseEntity<Task> add(@RequestBody Task task) {
         if (task.getId() != null && task.getId() != 0) {
@@ -46,11 +50,11 @@ public class TaskController {
 
     @PutMapping("/update")
     public ResponseEntity<Task> update(@RequestBody Task task) {
-        if (task.getId() == null || task.getId() == 0) {
+        if (task.getId() == null || task.getId() == 0){
             return new ResponseEntity("missed param: id",
                     HttpStatus.NOT_ACCEPTABLE);
         }
-        if (task.getTitle() == null || task.getTitle().trim().length() == 0) {
+        if (task.getTitle() == null || task.getTitle().trim().length() == 0){
             return new ResponseEntity("missed param: title",
                     HttpStatus.NOT_ACCEPTABLE);
         }
@@ -83,6 +87,55 @@ public class TaskController {
         return ResponseEntity.ok(task);
     }
 
+
+    @PostMapping("/categoryId")
+    public ResponseEntity<Page<Task>> findByCategory(@RequestBody TaskSearchValues taskSearchValues)
+           throws ParseException {
+
+            if ( taskSearchValues.getCategoryId() == null) {
+                return new ResponseEntity("missed param: CategoryId",
+                        HttpStatus.NOT_ACCEPTABLE);
+            }
+
+
+            Long categoryId = taskSearchValues.getCategoryId() != null ?
+                    taskSearchValues.getCategoryId() : null;
+
+
+            String sortColumn = taskSearchValues.getSortColumn() != null ?
+                    taskSearchValues.getSortColumn() : null;
+
+
+            Integer pageNumber = taskSearchValues.getPageNumber() != null ?
+                    taskSearchValues.getPageNumber() : null;
+
+            Integer pageSize = taskSearchValues.getPageSize() != null ?
+                    taskSearchValues.getPageSize() : null;
+
+            String email = taskSearchValues.getEmail() != null ?
+                    taskSearchValues.getEmail() : null;
+
+
+            if (email == null || email.trim().length() == 0) {
+                return new ResponseEntity("missed param: email",
+                        HttpStatus.NOT_ACCEPTABLE);
+            }
+
+            String sortDirection = taskSearchValues.getSortDirection() != null ?
+                    taskSearchValues.getSortDirection() : null;
+
+            Sort.Direction direction = sortDirection == null ||
+                    sortDirection.trim().length() == 0 ||
+                    sortDirection.trim().equals("asc") ?
+                    Sort.Direction.ASC : Sort.Direction.DESC;
+
+            Sort sort = Sort.by(direction, sortColumn, ID_COLUMN);
+
+            PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
+            Page<Task> result = taskService.findByCategory(categoryId, email, pageRequest);
+
+            return ResponseEntity.ok(result);
+    }
     @PostMapping("/search")
     public ResponseEntity<Page<Task>> search(@RequestBody TaskSearchValues taskSearchValues)
             throws ParseException {
@@ -114,10 +167,12 @@ public class TaskController {
         String email = taskSearchValues.getEmail() != null ?
                 taskSearchValues.getEmail() : null;
 
+
         if (email == null || email.trim().length() == 0) {
             return new ResponseEntity("missed param: email",
                     HttpStatus.NOT_ACCEPTABLE);
         }
+
 
         Date dateFrom = null;
         Date dateTo = null;
