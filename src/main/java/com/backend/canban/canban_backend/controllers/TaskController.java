@@ -17,6 +17,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 @RestController
 @RequestMapping("/task")
 public class TaskController {
@@ -27,9 +30,17 @@ public class TaskController {
     }
 
     @PostMapping("/all")
-    public ResponseEntity<List<Task>> findAll(@RequestBody String email) {
-        return ResponseEntity.ok(taskService.findAll(email));
+    public ResponseEntity findAll(@RequestBody String email) {
+        return ResponseEntity.ok("ok");
     }
+
+    /*
+    public ResponseEntity<List<Task>> findAll(@RequestBody String email) {
+        return ResponseEntity.ok("ok");
+
+        /*return ResponseEntity.ok(taskService.findAll(email));
+    }
+    */
 
 
 

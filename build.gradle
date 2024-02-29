@@ -24,6 +24,7 @@ configurations {
 
 // кодировка при компиляции классов (чтобы все русские символы из комментариев корректно отображались)
 compileJava.options.encoding = 'UTF-8'
+
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
@@ -31,6 +32,7 @@ tasks.withType(JavaCompile) {
 repositories {
 	mavenCentral()
 }
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
