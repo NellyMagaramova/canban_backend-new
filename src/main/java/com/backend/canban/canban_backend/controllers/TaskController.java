@@ -30,17 +30,10 @@ public class TaskController {
     }
 
     @PostMapping("/all")
-    public ResponseEntity findAll(@RequestBody String email) {
-        return ResponseEntity.ok("ok");
-    }
-
-    /*
     public ResponseEntity<List<Task>> findAll(@RequestBody String email) {
-        return ResponseEntity.ok("ok");
-
-        /*return ResponseEntity.ok(taskService.findAll(email));
+        return ResponseEntity.ok(taskService.findAll(email));
     }
-    */
+
 
 
 
