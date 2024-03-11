@@ -41,17 +41,12 @@ public class TaskService {
     }
 
 
-    public Page<Task> findByParams(String text, Boolean completed, Long priorityId,
-                                   Long categoryId, String email, Date dateFrom,
-                                   Date dateTo, PageRequest paging)
-    {
-        return repository.findByParams(text, completed, priorityId,
-                categoryId, email, dateFrom, dateTo, paging);
+    public Page<Task> findByParams(String text,  Boolean completed, Long priorityId, Long categoryId, String email, Date dateFrom, Date dateTo, PageRequest paging) {
+        return repository.findByParams(text, completed, priorityId, categoryId, email, dateFrom, dateTo, paging);
     }
 
-    public  Page<Task> findByCategory(Long categoryId, String email, PageRequest paging) {
-        return repository.findByCategory(categoryId, email, paging);
-    }
+
+
 
     public Task findById(Long id) {
         return repository.findById(id).get();

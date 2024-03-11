@@ -20,6 +20,8 @@ import java.util.NoSuchElementException;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+
+
 @RestController
 @RequestMapping("/task")
 public class TaskController {
@@ -92,54 +94,7 @@ public class TaskController {
     }
 
 
-    @PostMapping("/categoryId")
-    public ResponseEntity<Page<Task>> findByCategory(@RequestBody TaskSearchValues taskSearchValues)
-           throws ParseException {
 
-            if ( taskSearchValues.getCategoryId() == null) {
-                return new ResponseEntity("missed param: CategoryId",
-                        HttpStatus.NOT_ACCEPTABLE);
-            }
-
-
-            Long categoryId = taskSearchValues.getCategoryId() != null ?
-                    taskSearchValues.getCategoryId() : null;
-
-
-            String sortColumn = taskSearchValues.getSortColumn() != null ?
-                    taskSearchValues.getSortColumn() : null;
-
-
-            Integer pageNumber = taskSearchValues.getPageNumber() != null ?
-                    taskSearchValues.getPageNumber() : null;
-
-            Integer pageSize = taskSearchValues.getPageSize() != null ?
-                    taskSearchValues.getPageSize() : null;
-
-            String email = taskSearchValues.getEmail() != null ?
-                    taskSearchValues.getEmail() : null;
-
-
-            if (email == null || email.trim().length() == 0) {
-                return new ResponseEntity("missed param: email",
-                        HttpStatus.NOT_ACCEPTABLE);
-            }
-
-            String sortDirection = taskSearchValues.getSortDirection() != null ?
-                    taskSearchValues.getSortDirection() : null;
-
-            Sort.Direction direction = sortDirection == null ||
-                    sortDirection.trim().length() == 0 ||
-                    sortDirection.trim().equals("asc") ?
-                    Sort.Direction.ASC : Sort.Direction.DESC;
-
-            Sort sort = Sort.by(direction, sortColumn, ID_COLUMN);
-
-            PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
-            Page<Task> result = taskService.findByCategory(categoryId, email, pageRequest);
-
-            return ResponseEntity.ok(result);
-    }
     @PostMapping("/search")
     public ResponseEntity<Page<Task>> search(@RequestBody TaskSearchValues taskSearchValues)
             throws ParseException {
