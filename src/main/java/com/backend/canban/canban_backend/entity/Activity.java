@@ -14,7 +14,7 @@ import java.util.Objects;
 
 /*  @Table(name = "activity", schema = "public", catalog = "javabeginCourse") */
 @Entity
-@Table(name = "activity", schema = "public", catalog = "javabeginCourse")
+@Table(name = "activity", schema = "todolist", catalog = "javabeginCourse")
 @Setter
 @Getter
 @AllArgsConstructor
