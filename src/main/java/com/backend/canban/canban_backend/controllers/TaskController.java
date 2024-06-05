@@ -36,10 +36,6 @@ public class TaskController {
         return ResponseEntity.ok(taskService.findAll(email));
     }
 
-
-
-
-
     @PostMapping("/add")
     public ResponseEntity<Task> add(@RequestBody Task task) {
         if (task.getId() != null && task.getId() != 0) {
